@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# Terminal font: inconsolata medium 12, white on black theme
+
+function colorizePS1() {
+	# "include" git prompt capabilities
+	#GIT_PS1_SHOWDIRTYSTATE=""
+	#GIT_PS1_SHOWCOLORHINTS="true"
+	#GIT_PS1_SHOWUPSTREAM="verbose name"
+	source ~/.git_prompt
+
+	# Color palette
+	local reset="\033[0m"
+	local black="\033[38;5;0m"
+	local red="\033[38;5;1m"
+	local green="\033[38;5;2m"
+	local yellow="\033[38;5;3m"
+	local blue="\033[38;5;4m"
+	local magenta="\033[38;5;5m"
+	local cyan="\033[38;5;6m"
+	local white="\033[38;5;7m"
+	local hi_black="\033[38;5;8m"
+	local hi_red="\033[38;5;9m"
+	local hi_green="\033[38;5;10m"
+	local hi_yellow="\033[38;5;11m"
+	local hi_blue="\033[38;5;12m"
+	local hi_magenta="\033[38;5;13m"
+	local hi_cyan="\033[38;5;14m"
+	local hi_white="\033[38;5;15m"
+
+	# Highlight the user name when logged in as root.
+	if [[ "${USER}" == "root" ]]; then
+		userStyle="${hi_red}"
+	  bracketStyle="${red}"
+	  dirStyle="${yellow}"
+	  hostStyle="${red}"
+	  promptChar="#"
+	else
+		userStyle="${hi_cyan}"
+	  bracketStyle="${hi_white}"
+	  dirStyle="${hi_blue}"
+	  hostStyle="${cyan}"
+	  promptChar="\\$"
+	fi
+
+	# Highlight the hostname when connected via SSH.
+	if [[ "${SSH_TTY}" ]]; then
+	  userStyle="${hi_yellow}"
+		hostStyle="${yellow}"
+	fi
+
+	PS1="\[${white}\]\t "                     # current time, blankspace
+	PS1+="\[${bracketStyle}\]["               # left bracket
+	PS1+="\[${userStyle}\]\u"                 # user
+	PS1+="\[${hostStyle}\]@\h "               # host, blankspace
+	PS1+="\[${dirStyle}\]\w"                  # working dir
+	PS1+="\[${bracketStyle}\]]"               # right bracket
+	PS1+="\[${yellow}\]"											# git prompt color
+	PS1+='$(__git_ps1)'												# git prompt
+	PS1+="\[${bracketStyle}\]${promptChar} "  # prompt, blankspace
+	PS1+="\[${reset}\]"
+	export PS1
+}
+
+colorizePS1
