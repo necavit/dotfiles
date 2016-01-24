@@ -11,7 +11,8 @@ cd "$(dirname "${BASH_SOURCE}")"
 function installDotFiles() {
 	echo "Syncing dotfiles to ~/ ..."
 	rsync --exclude ".git/" --exclude "dotfiles.sh" --exclude "bin/" \
-		--exclude "README.md" --exclude "LICENSE" -avh --no-perms . ~
+		--exclude "img/" --exclude "README.md" --exclude "LICENSE" \
+		-avh --no-perms . ~
 
 	# setup ~/bin directory with symlinks to the executable files in this
 	# repository, symlink them and make them executable
