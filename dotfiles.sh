@@ -17,8 +17,8 @@ function installDotFiles() {
 	# setup ~/bin directory with symlinks to the executable files in this
 	# repository, symlink them and make them executable
 	echo "Setting up ~/bin ..."
-	mkdir ~/bin 2> /dev/null
-	for file in $(pwd)/bin/*; do
+	mkdir -p ~/bin
+	for file in $(pwd)/bin/*.sh; do
 		chmod u+x $file
 		name=$(basename $file)
 		ln -sf $file ~/bin/${name%.*}
