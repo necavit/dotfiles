@@ -1,3 +1,10 @@
 #!/bin/bash
 
-export PATH=$PATH:~/bin:~/android/android-studio/bin:.
+# PATH customization:
+#   custom scripts (~/bin) and current directory
+export PATH=$PATH:~/bin:.
+#   Android development
+export PATH=$PATH:~/android/android-studio/bin     # studio.sh - open the IDE!!
+export PATH=$PATH:~/android/sdk/build-tools/23.0.2 # aapt, aidl, zipalign, dexdump...
+export PATH=$PATH:~/android/sdk/platform-tools     # adb, sqlite3, fastboot...
+export PATH=$PATH:~/android/sdk/tools              # emulator, android, hierarchyviewer...
