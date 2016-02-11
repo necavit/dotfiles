@@ -30,12 +30,12 @@ Be aware that the instructions above are customized for my own computer and pers
 
 The user's customized prompt looks as follows:
 
-![Customized Root Prompt](https://github.com/necavit/dotfiles/blob/master/img/prompt.png)
+![Customized Root Prompt](img/prompt.png)
 
-The time is shown, along with the username, the host machine, the current directory and, in the case that it is a Git repository, some information about it, like the current branch. If you want some more Git-related information being shown, there are other options that can be configured, as explained in the [`.git_prompt` file](https://github.com/necavit/dotfiles/blob/master/.git_prompt).
+The time is shown, along with the username, the host machine, the current directory and, in the case that it is a Git repository, some information about it, like the current branch. If you want some more Git-related information being shown, there are other options that can be configured, as explained in the [`.git_prompt` file](./.git_prompt).
 
 #### Root
 
 The following prompt is shown when becoming root using a method that reads the user's `.bashrc`, such as `sudo -s`. If you are becoming root using `sudo su` or any method like that, you will need to update root's `.bashrc` file as well!
 
-![Customized Root Prompt](https://github.com/necavit/dotfiles/blob/master/img/prompt_root.png)
+![Customized Root Prompt](img/prompt_root.png)

@@ -31,7 +31,7 @@ fi
 echo "INFO: Music will be downloaded and stored in $download_dir."
 
 # Check that the download directory exists and create it if it does not
-mkdir -p $download_dir
+mkdir -p "$download_dir"
 
 # Check that 'youtube-dl' is installed
 if [ ! command -v youtube-dl >/dev/null 2>&1 ]; then
