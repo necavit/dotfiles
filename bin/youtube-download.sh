@@ -40,7 +40,7 @@ if [ ! command -v youtube-dl >/dev/null 2>&1 ]; then
 fi
 
 # Execute youtube-dl with the required options and arguments
-youtube-dl -x --audio-format mp3 --audio-quality 3 \
+youtube-dl -x --audio-format mp3 --audio-quality 0 \
   --yes-playlist \
   -o "$download_dir/%(title)s.%(ext)s" \
   -a $batch_file
