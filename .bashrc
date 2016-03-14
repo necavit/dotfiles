@@ -64,6 +64,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Enable Python argcomplete
+py_autocomplete_file="/etc/bash_completion.d/python-argcomplete.sh"
+if [ -f "$py_autocomplete_file" ]; then
+  . $py_autocomplete_file
+fi
+
 #### Source dotfiles ####
 # Load the shell dotfiles
 for file in ~/.{bash_aliases,bash_env,bash_functions,bash_prompt}; do
