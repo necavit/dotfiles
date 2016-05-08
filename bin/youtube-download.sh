@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Initialize our own variables:
-download_dir="~/youtube-music"
+download_dir="$HOME/youtube-music"
 batch_file=""
 
 # Usage message + exit
