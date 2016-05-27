@@ -32,3 +32,9 @@ extract() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# Silences the output of a command by redirecting all output streams (stderr
+#  and stdout) to /dev/null
+function silence() {
+  "$@" &> /dev/null
+}
