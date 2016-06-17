@@ -28,9 +28,6 @@ shopt -s checkwinsize
 # Enables minor spell corrections for the 'cd' command
 shopt -s cdspell
 
-# Auto cd's to <dir>, without having to type "cd <dir>"
-shopt -s autocd
-
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 
