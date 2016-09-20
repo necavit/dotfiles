@@ -26,8 +26,8 @@ alias android-sdk="cd /home/necavit/android/sdk"
 alias kth="cd /home/necavit/documents/kth-st"
 alias library="cd /home/necavit/documents/kth-st/library"
   # documents/kth-st
-alias icmma="/home/necavit/documents/kth-st/semester_3/icmma"
-alias rmts="/home/necavit/documents/kth-st/semester_3/rmts"
+alias icmma="cd /home/necavit/documents/kth-st/semester_3/icmma"
+alias rmts="cd /home/necavit/documents/kth-st/semester_3/rmts"
   # workspace/
 alias dotfiles-git="cd /home/necavit/workspace/dotfiles"
 alias kommoncare="cd /home/necavit/workspace/kommoncare"
