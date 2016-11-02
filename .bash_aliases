@@ -28,6 +28,8 @@ alias library="cd /home/necavit/documents/kth-st/library"
   # documents/kth-st
 alias icmma="cd /home/necavit/documents/kth-st/semester_3/icmma"
 alias rmts="cd /home/necavit/documents/kth-st/semester_3/rmts"
+alias aie="cd /home/necavit/documents/kth-st/semester_3/aie"
+alias lca="cd /home/necavit/documents/kth-st/semester_3/lca"
   # workspace/
 alias dotfiles-git="cd /home/necavit/workspace/dotfiles"
 alias kommoncare="cd /home/necavit/workspace/kommoncare"
