@@ -6,11 +6,8 @@ alias la="ls -lash"
 alias ll="ls -lsh"
 alias l="ls -F"
 
-# Upper directories aliases
+# Upper directory aliase
 alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
 
 # Useful "shortcuts" to recurrent directories
 alias desktop="cd /home/necavit/desktop"
@@ -24,17 +21,12 @@ alias dropbox="cd /home/necavit/Dropbox"
 alias android-sdk="cd /home/necavit/android/sdk"
   # documents/
 alias kth="cd /home/necavit/documents/kth-st"
-alias library="cd /home/necavit/documents/kth-st/library"
   # documents/kth-st
-alias icmma="cd /home/necavit/documents/kth-st/semester_3/icmma"
 alias rmts="cd /home/necavit/documents/kth-st/semester_3/rmts"
 alias aie="cd /home/necavit/documents/kth-st/semester_3/aie"
 alias lca="cd /home/necavit/documents/kth-st/semester_3/lca"
+alias thesis="cd /home/necavit/documents/kth-st/thesis"
   # workspace/
 alias dotfiles-git="cd /home/necavit/workspace/dotfiles"
-alias kommoncare="cd /home/necavit/workspace/kommoncare"
 alias kth-git="cd /home/necavit/workspace/kth"
-alias latex-templates="cd /home/necavit/workspace/latex-templates"
-alias taskback="cd /home/necavit/workspace/taskback"
-alias tasker="cd /home/necavit/workspace/tasker"
-alias web="cd /home/necavit/workspace/web"
+
