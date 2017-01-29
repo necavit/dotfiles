@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function usage {
-  echo "Usage: $0 ROOT_DIR"
+  echo "Usage: `basename $0` ROOT_DIR"
   echo "  Checks whether any Git repository under the ROOT_DIR has changes and needs to be committed or pushed."
   exit 1
 }
