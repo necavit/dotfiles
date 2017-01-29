@@ -9,7 +9,7 @@ Run the following commands to setup the contents of this repository (remember to
 ```bash
 mkdir ~/workspace && cd ~/workspace
 git clone https://github.com/necavit/dotfiles.git dotfiles && cd dotfiles
-chmod u+x dotfiles.sh && ./dotfiles.sh && source ~/.bashrc
+chmod u+x dotfiles.sh && ./dotfiles.sh -y && source ~/.bashrc
 ```
 
 Be aware that the instructions above are customized for my own computer and personal preferences (like having a `workspace` folder in the home dir!). Feel free to install the repository wherever you want or need.
@@ -18,12 +18,15 @@ Be aware that the instructions above are customized for my own computer and pers
 
 * `bin/`: small, useful scripts that are `chmod`'d and symlinked on `~/bin` upon installation. The `dotfiles.sh` "master" script is also symlinked there, to ease the modification of the dotfiles repository afterwards. `~/bin` is added to the `PATH`, so the scripts are always accessible.
 * `img/`: just the prompt example images!
+* `.backup-extdrive.cfg`: configuration file for the `duplicity` wrapper (`bin/backup-extdrive.sh`).
+* `.backup-include`: list of the folders to include/exclude in the `duplicity` backup.
 * `.bash_aliases`: `ls` and `cd` aliases, useful locations, and any other programs which name is not easy to remember.
 * `.bash_env`: "permanent" environment variables exports, such as the modified `PATH`, which includes `~/bin` and `.` by default.
 * `.bash_functions`: useful Bash functions, that act like extensions.
 * `.bash_prompt`: the customized terminal prompt, both for the root user and the current, normal user.
 * `.bashrc`: the main Bash profile customization file. There are shell options toggles and some minor tweaks. The rest of the dotfiles are sourced from this script.
 * `.git_prompt`: bash/zsh Git prompt support.
+* `.gitconfig_templates`: a simple JSON with the templates for `bin/gitconfig.py`.
 * `dotfiles.sh`: the installation script for the dotfiles.
 
 ## The prompt

@@ -100,7 +100,7 @@ function setupDotFiles {
 
 #### MAIN SCRIPT entry point ####
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+if [ "$1" == "--yes" -o "$1" == "-y" ]; then
 	setupDotFiles
 else
 	read -p "This will overwrite existing files in your home directory. Continue? (y/n) " -n 1
