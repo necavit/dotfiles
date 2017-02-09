@@ -36,7 +36,7 @@ function echoNotesDir {
 
 function listNotes {
   echoNotesDir
-  ls -1 $notesDir
+  ls -1 $notesDir | sed -e 's/\..*$//'
 }
 
 function createNote {
@@ -53,10 +53,10 @@ function searchNotes {
 
 function checkNote {
   if [[ -z "$1" ]]; then
-    echo "Error: please provide a NOTE filename (with extension and without parent path)."
+    echo "Error: please provide a NOTE filename (without extension and without parent path)."
     exit 1
   fi
-  if [[ ! -f "$notesDir/$1" ]]; then
+  if [[ ! -f "$notesDir/$1.txt" ]]; then
     echo "Error: note $1 does not exist or is not a regular file."
     exit 1
   fi
@@ -64,15 +64,15 @@ function checkNote {
 
 function openNote {
   checkNote "$1"
-  gedit "$notesDir/$1" &
+  gedit "$notesDir/$1.txt" &
 }
 
 function deleteNote {
   checkNote "$1"
-  read -p "This will delete $1. Continue? (y/n) " -n 1
+  read -p "This will delete the note $1.txt. Continue? (y/n) " -n 1
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    rm "$notesDir/$1"
+    rm "$notesDir/$1.txt"
   fi
 }
 

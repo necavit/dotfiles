@@ -89,11 +89,18 @@ function symlinkBinScripts {
 	unset name
 }
 
+function generateCompletions {
+	completionFile=~/.bash_completion
+	echo "Generating custom Bash completions into $completionFile ..."
+	cat bash_completion/*.sh > $completionFile
+}
+
 function setupDotFiles {
 	checkDependencies        # apt-get and Python dependencies
 	enablePythonAutocomplete # argument autocompletion for Python scripts
 	copyFilesToHome          # syncronize the configuration dotfiles
 	symlinkBinScripts        # setup the scripts in the ~/bin directory
+	generateCompletions
 
 	echo "${red}Remember to ${reset}source ~/.bashrc${red} in order to finnish the dotfiles setup.${reset}"
 }

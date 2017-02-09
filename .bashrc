@@ -69,7 +69,7 @@ fi
 
 #### Source dotfiles ####
 # Load the shell dotfiles
-for file in ~/.{bash_aliases,bash_env,bash_functions,bash_prompt}; do
+for file in ~/.{bash_aliases,bash_env,bash_functions,bash_prompt,bash_completion}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
