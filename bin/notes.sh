@@ -18,6 +18,8 @@ function usage {
   echo "        Searches for SEARCH_STRING in all the notes"
   echo "    ${bold}list${reset}"
   echo "        Lists all the notes files and the configured directory"
+  echo "    ${bold}show${reset} NOTE"
+  echo "        Outputs the contents of the NOTE text file in the terminal"
   echo "    ${bold}create${reset}"
   echo "        Creates a new file in the configured directory"
   echo "    ${bold}open|edit${reset} NOTE"
@@ -62,6 +64,11 @@ function checkNote {
   fi
 }
 
+function showNote {
+  checkNote "$1"
+  fold -w "$wrapShowAt" -s "$notesDir/$1.txt"
+}
+
 function openNote {
   checkNote "$1"
   gedit "$notesDir/$1.txt" &
@@ -93,6 +100,9 @@ if [[ $(id -u) -ne 0 ]]; then
     searchNotes "$@"
   elif [[ "$1" = "list" ]]; then
     listNotes
+  elif [[ "$1" = "show" ]]; then
+    shift
+    showNote "$@"
   elif [[ "$1" = "create" ]]; then
     createNote
   elif [[ "$1" = "open" || "$1" = "edit" ]]; then

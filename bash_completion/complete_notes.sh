@@ -8,15 +8,15 @@ function _notes {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  opts="search list create open edit delete"
+  opts="search list show create open edit delete"
   notes=$(ls $notesDir | sed -e 's/\..*$//')
 
   case "${prev}" in
-    open|edit|delete)
+    open|edit|delete|show)
       COMPREPLY=( $(compgen -W "${notes}" -- ${cur}) )
       return 0
       ;;
-    search|list|create|@notes)
+    search|list|create)
       return 0
       ;;
     *)
