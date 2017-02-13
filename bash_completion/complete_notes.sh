@@ -8,7 +8,7 @@ function _notes {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  opts="search list show create open edit delete"
+  opts="search list show create open edit delete report"
   notes=$(ls $notesDir | sed -e 's/\..*$//')
 
   case "${prev}" in
