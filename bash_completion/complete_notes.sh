@@ -16,7 +16,7 @@ function _notes {
       COMPREPLY=( $(compgen -W "${notes}" -- ${cur}) )
       return 0
       ;;
-    search|list|create)
+    search|list|create|report)
       return 0
       ;;
     *)

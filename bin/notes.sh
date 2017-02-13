@@ -18,6 +18,8 @@ function usage {
   echo "        Searches for SEARCH_STRING in all the notes"
   echo "    ${bold}list${reset}"
   echo "        Lists all the notes files and the configured directory"
+  echo "    ${bold}report${reset}"
+  echo "        Generates a PDF file with all the notes concatenated"
   echo "    ${bold}show${reset} NOTE"
   echo "        Outputs the contents of the NOTE text file in the terminal"
   echo "    ${bold}create${reset}"
@@ -44,13 +46,31 @@ function listNotes {
 function createNote {
   echoNotesDir
   read -p "Enter a name for the new note (without extension): " noteName
-	echo ""
-  gedit "$notesDir/$noteName.txt" &
+  newNote=$notesDir/$noteName.md
+  touch $newNote
+  echo "## $noteName" >> $newNote
+  echo "**tags:** *tag1,*" >> $newNote
+	echo "Opening the text editor... gedit $newNote &"
+  gedit $newNote &
 }
 
 function searchNotes {
   echoNotesDir
-  grep --color=always -nwi $notesDir/*.txt -e "$1" | sed 's|^.*/||g'
+  grep --color=always -nwi $notesDir/*.md -e "$1" | sed 's|^.*/||g'
+}
+
+function createReport {
+  reportTmpFile=$notesDir/report.md
+  for f in $notesDir/*.md
+  do
+    echo "Processing $f file..."
+    cat $f >> $reportTmpFile
+    echo "" >> $reportTmpFile
+  done
+  reportPdfFile=$notesDir/report_"$(date +%Y-%m-%d)".pdf
+  pandoc $reportTmpFile -o $reportPdfFile
+  rm $reportTmpFile
+  evince $reportPdfFile &
 }
 
 function checkNote {
@@ -58,7 +78,7 @@ function checkNote {
     echo "Error: please provide a NOTE filename (without extension and without parent path)."
     exit 1
   fi
-  if [[ ! -f "$notesDir/$1.txt" ]]; then
+  if [[ ! -f "$notesDir/$1.md" ]]; then
     echo "Error: note $1 does not exist or is not a regular file."
     exit 1
   fi
@@ -66,20 +86,20 @@ function checkNote {
 
 function showNote {
   checkNote "$1"
-  fold -w "$wrapShowAt" -s "$notesDir/$1.txt"
+  fold -w "$wrapShowAt" -s "$notesDir/$1.md"
 }
 
 function openNote {
   checkNote "$1"
-  gedit "$notesDir/$1.txt" &
+  gedit "$notesDir/$1.md" &
 }
 
 function deleteNote {
   checkNote "$1"
-  read -p "This will delete the note $1.txt. Continue? (y/n) " -n 1
+  read -p "This will delete the note $1.md. Continue? (y/n) " -n 1
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    rm "$notesDir/$1.txt"
+    rm "$notesDir/$1.md"
   fi
 }
 
@@ -100,6 +120,8 @@ if [[ $(id -u) -ne 0 ]]; then
     searchNotes "$@"
   elif [[ "$1" = "list" ]]; then
     listNotes
+  elif [[ "$1" = "report" ]]; then
+    createReport
   elif [[ "$1" = "show" ]]; then
     shift
     showNote "$@"
