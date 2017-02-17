@@ -61,6 +61,7 @@ function copyFilesToHome {
 	echo "Syncing dotfiles to ~/ ..."
 	rsync --exclude ".git/" --exclude "dotfiles.sh" --exclude "bin/" \
 		--exclude "img/" --exclude "README.md" --exclude "LICENSE" \
+		--exclude "bash_completion/" \
 		-avh --no-perms . ~
 }
 
@@ -100,7 +101,7 @@ function setupDotFiles {
 	enablePythonAutocomplete # argument autocompletion for Python scripts
 	copyFilesToHome          # syncronize the configuration dotfiles
 	symlinkBinScripts        # setup the scripts in the ~/bin directory
-	generateCompletions
+	generateCompletions      # setup the completion file in the home directory
 
 	echo "${red}Remember to ${reset}source ~/.bashrc${red} in order to finnish the dotfiles setup.${reset}"
 }
