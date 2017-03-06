@@ -1,0 +1,186 @@
+%%%% Class %%%%
+
+% Class of the document: KOMA Script Article
+%   Options: 12 points font, A4 paper, bibliography in ToC
+\documentclass[a4paper,fontsize=10pt,bibliography=totoc]{scrartcl}
+
+%%%% Preamble %%%%
+% Packages inclusions
+\usepackage[top=0.8in,bottom=1in,left=0.75in,right=0.75in]{geometry}								% Custom margins (comment out if not needed)
+\usepackage[english]{babel}				% Language settings
+\usepackage{lmodern}					% Use Latin Modern font
+\usepackage[nointegrals]{wasysym}
+\usepackage{microtype}					% Enhanced typesetting (better reading)
+\usepackage{graphicx}					% Enhanced graphics processing
+\usepackage{url}
+\usepackage{breakurl}
+\usepackage[table,hyperref,x11names,svgnames]{xcolor}				% Allows coloring tables
+\usepackage[section]{placeins}			% Ensure float elems. inside their section
+\usepackage{booktabs}					% Beautiful, "pro" tables
+\usepackage{adjustbox}					% Boxing capabilities for images and text
+\usepackage{multirow}					% Enables tabular cells spanning multiple rows
+\usepackage{array}					% Enables custom table column defintions
+\usepackage[toc,page]{appendix}			% Appendices title customisation
+\usepackage{enumitem}					% Customized enumerations and itemizes
+\usepackage[version=3]{mhchem}			% Allows inclusion of chemical formulas and eq.
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e} % Algorithms and pseudocode
+\usepackage{todonotes}					% Useful to put TODO side notes
+\usepackage[noblocks]{authblk}			% Allows authors with affiliations
+\usepackage{lastpage}					% Allows referencing the last page
+\usepackage[style=british]{csquotes}    % Allows block quotations
+\usepackage{titlesec}
+\usepackage{nameref}	% Allows references by name ("Section 5" vs "Conclusions")
+\usepackage{fancyhdr}					% Fancy headers and footers
+\usepackage{multicol}
+\usepackage{pdflscape}
+\usepackage{lipsum}
+\usepackage[
+	backend=biber,
+	natbib=true,
+	bibstyle=authoryear,
+	citestyle=authoryear,
+	sorting=nyt,
+	block=space,
+	hyperref=true,
+	dashed=false
+]{biblatex}
+\usepackage{hyperref}
+\hypersetup{
+  unicode=true,
+ 	pdfpagemode={UseOutlines},
+ 	pdfstartview={FitV},
+	bookmarks=true,
+	bookmarksopen=true,
+	bookmarksopenlevel=0,
+	bookmarksnumbered=true,
+	breaklinks=true, % to have links breaking among lines
+	hypertexnames=true,
+	plainpages=false,
+	hidelinks=false,
+	colorlinks=true,
+	citecolor=Turquoise4,
+	filecolor=black,
+	linkcolor=DeepSkyBlue4,
+	urlcolor=RoyalBlue3,
+	anchorcolor=RoyalBlue3
+}
+
+% Command definitions
+\makeatletter
+
+% useful cross referencing commands
+\newcommand{\fref}[1]{Figure~\ref{#1}}
+\newcommand{\tref}[1]{Table~\ref{#1}}
+\newcommand{\eref}[1]{Equation~\ref{#1}}
+\newcommand{\cref}[1]{Chapter~\ref{#1}}
+\newcommand{\sref}[1]{Section~\ref{#1}}
+\newcommand{\aref}[1]{Appendix~\ref{#1}}
+\newcommand{\alref}[1]{Algorithm~\ref{#1}}
+\newcommand{\procref}[1]{Procedure~\ref{#1}}
+
+\newcommand\frontmatter{%
+	\cleardoublepage
+	\pagenumbering{roman}}
+
+\newcommand\mainmatter{%
+	\cleardoublepage
+	\pagenumbering{arabic}}
+
+\newcommand\backmatter{%
+	\cleardoublepage
+}
+
+\renewcommand\Authands{ and }
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\newcommand{\titlemake}[2]{%
+		\begin{center}
+			\parbox{#1\linewidth}{\centering\Large\sffamily\bfseries{#2}}
+		\end{center}
+}
+
+\newcommand{\subtitlemake}[1]{%
+	\begin{center}
+		\begingroup
+			\large\sffamily{#1}
+		\endgroup
+	\end{center}
+}
+
+\newcommand{\old}[1]{\textcolor{Red2}{#1}}
+
+\makeatother
+
+\newenvironment{dispositionlist}{%
+	\begingroup
+	\small
+	\begin{enumerate}[label*=\arabic*.]
+}{ %
+	\end{enumerate}
+	\endgroup
+}
+
+\newenvironment{checklist}{%
+  \begin{list}{}{}% whatever you want the list to be
+  \let\olditem\item
+  \renewcommand\item{\olditem[$\Box$] }
+  \newcommand\checkeditem{\olditem[$\CheckedBox$] }
+}{%
+  \end{list}
+}
+
+% Koma Script font modifications
+\setkomafont{author}{\small}
+\setkomafont{date}{\scshape}
+\addtokomafont{section}{\normalsize}
+\addtokomafont{subsection}{\normalsize}
+\addtokomafont{subsubsection}{\small}
+\addtokomafont{caption}{\small}
+\setlength{\abovecaptionskip}{2pt plus 0pt minus 2pt}
+\setlist{nosep}
+\renewcommand*{\bibfont}{\footnotesize}
+
+% Formatting for paragraphs (indentation and space after par.)
+\setlength{\parskip}{0.5\baselineskip}%
+\setlength{\parindent}{0em}%
+
+% Column separation
+\setlength{\columnsep}{1.5em}
+
+% Reduce space after sections
+\titlespacing{\section}{0pt}{-0.25\parskip}{-0.5\parskip}
+\titlespacing{\subsection}{0pt}{-0.25\parskip}{-0.6\parskip}
+\titlespacing{\subsubsection}{0pt}{-0.5\parskip}{-0.75\parskip}
+
+% Configuration of the blockquotes paragraphs
+\SetBlockThreshold{0} % all blockquotes of 1 or more lines are treated as blocks
+
+\addbibresource{references.bib}
+
+\begin{document}
+% Page style set to fancy to get customized headers
+\pagestyle{fancy}
+\fancyhf{} % clear header and footer
+\rhead{\footnotesize \today}
+\lhead{\footnotesize David Martínez Rodríguez}
+\chead{\footnotesize MSc Thesis - Literature notes}
+\rfoot{\footnotesize \thepage}
+
+\titlemake{1}{ % \titlemake[2] is a custom command -- look in the preface!
+Literature notes
+}
+
+\begin{multicols}{2}
+
+{\hypersetup{linkcolor=DeepSkyBlue4!60!black}
+\tableofcontents % Content Index
+}
+
+$body$
+
+\printbibliography
+
+\end{multicols}
+\end{document}

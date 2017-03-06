@@ -11,7 +11,7 @@ function usage {
   echo ""
   echo "  Utility to search, create, delete and edit notes on bibliographic references,"
   echo "  where the notes are located under a predefined directory, specified in"
-  echo "  the configuratoin file: $configFile"
+  echo "  the configuration file: $configFile"
   echo ""
   echo " COMMANDS"
   echo "    ${bold}search${reset} SEARCH_STRING"
@@ -60,17 +60,17 @@ function searchNotes {
 }
 
 function createReport {
-  reportTmpFile=$notesDir/report.md
+  reportTmpFile=$notesDir/report/report.md
   for f in $notesDir/*.md
   do
     echo "Processing $f file..."
     cat $f >> $reportTmpFile
     echo "" >> $reportTmpFile
   done
-  reportPdfFile=$notesDir/report_"$(date +%Y-%m-%d)".pdf
-  pandoc $reportTmpFile -o $reportPdfFile
-  rm $reportTmpFile
-  evince $reportPdfFile &
+  # reportPdfFile=$notesDir/report/report_"$(date +%Y-%m-%d)".pdf
+  # pandoc -s $reportTmpFile --data-dir="~" --template=.notes-template.tex -o $reportPdfFile
+  # rm $reportTmpFile
+  # evince $reportPdfFile &
 }
 
 function checkNote {
