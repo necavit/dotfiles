@@ -29,6 +29,3 @@ alias thesis="cd /home/necavit/documents/kth-st/thesis"
   # workspace/
 alias dotfiles-git="cd /home/necavit/workspace/dotfiles"
 alias kth-git="cd /home/necavit/workspace/kth"
-
-# eclipse wrapper to include the GTK config file
-alias eclipse="env GTK2_RC_FILES=~/.gtkrc-eclipse eclipse"
