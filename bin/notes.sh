@@ -11,7 +11,7 @@ function usage {
   echo ""
   echo "  Utility to search, create, delete and edit notes on bibliographic references,"
   echo "  where the notes are located under a predefined directory, specified in"
-  echo "  the configuratoin file: $configFile"
+  echo "  the configuration file: $configFile"
   echo ""
   echo " COMMANDS"
   echo "    ${bold}search${reset} SEARCH_STRING"
