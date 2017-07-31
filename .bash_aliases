@@ -8,3 +8,6 @@ alias l="ls -F"
 
 # Upper directory aliase
 alias ..="cd .."
+
+# Nautilus alias
+alias nau="nautilus . &"
