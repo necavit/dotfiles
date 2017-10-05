@@ -24,7 +24,7 @@ function checkAndInstall {
 
 function checkPipAndInstall {
 	echo -n "  Checking Python package: $1"
-	if [ $(pip list | grep -c "$1") -eq 0 ]; then
+	if [ $(pip list --format=legacy | grep -c "$1") -eq 0 ]; then
 		echo -e "\t\t${red}Not installed!${reset}"
 		echo "  executing: sudo pip install $1"
 		sudo pip install $1
