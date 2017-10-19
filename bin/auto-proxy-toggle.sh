@@ -7,11 +7,10 @@ reset=`tput sgr0`
 bold=`tput bold`
 
 function usage {
-  echo "${bold}Usage: `basename $0` [-h|--help]${reset}"
+  echo "${bold}Usage: `basename $0` [-h|--help] PAC_CONFIG_FILE${reset}"
   echo ""
-  echo "  Toggles an automatic proxy configuration using gsettings."
-	echo ""
-	echo "  NOTE that the automatic proxy configuration file must exist to work!"
+  echo "  Toggles an automatic proxy configuration using gsettings and the"
+	echo "  provided PAC configuration file."
   echo ""
   echo " OPTIONS"
   echo "    ${bold}-h|--help${reset}"
@@ -39,4 +38,6 @@ autoProxyConfigFile=""
 if [[ -n "$1" && -f $1 ]]; then
   autoProxyConfigFile=$1
 	toggleProxy $autoProxyConfigFile
+else
+	echo "ERROR: the provided PAC file does not exist or is not specified"
 fi
