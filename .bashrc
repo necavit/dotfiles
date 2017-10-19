@@ -3,6 +3,10 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+function mylog {
+  echo `date +%T` "$1" >> ~/.necavit-bashrc.log
+}
+
 # Enable full color support
 if [ "$TERM" == "xterm" ]; then
     # No it isn't, it's gnome-terminal
@@ -64,12 +68,13 @@ fi
 # Enable Python argcomplete
 py_autocomplete_file="/etc/bash_completion.d/python-argcomplete.sh"
 if [ -f "$py_autocomplete_file" ]; then
+  mylog "enabling Python autocomplete..."
   . $py_autocomplete_file
 fi
 
 #### Source dotfiles ####
 # Load the shell dotfiles
 for file in ~/.{bash_aliases,bash_shortcut,bash_env,bash_functions,bash_prompt,bash_completion}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+	[ -r "$file" ] && [ -f "$file" ] && mylog "sourcing $file" && source "$file"
 done
 unset file
