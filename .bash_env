@@ -1,12 +1,30 @@
 #!/bin/bash
 
+# WARNING! this script relies on mylog(), a function defined in .bashrc
+
+# addToPATH( $1: pathToAdd[string], $2: prepend[string:prepend|append] )
+function addToPath {
+  if ! echo $PATH | grep -qF "$1"; then # -F to not expand . to the current dir
+    mylog ".bash_env: adding $1 to PATH"
+    if [[ "$2" == "prepend" ]]; then
+      export PATH="$1":$PATH
+    else
+      export PATH=$PATH:"$1"
+    fi
+  fi
+}
+
 # PATH customization:
-#   custom scripts (~/bin) and current directory
-export PATH=$PATH:~/bin:.
-#   Android development
-export PATH=$PATH:~/android/android-studio/bin     # studio.sh - open the IDE!!
-#export PATH=$PATH:~/android/sdk/build-tools/23.0.3 # aapt, aidl, zipalign, dexdump...
-export PATH=$PATH:~/android/sdk/platform-tools     # adb, sqlite3, fastboot...
-export PATH=$PATH:~/android/sdk/emulator           # emulator
-export PATH=$PATH:~/android/sdk/tools              # emulator, android, hierarchyviewer...
+#   add custom scripts ($HOME/bin) to PATH if not already added by .profile
+addToPath "$HOME/bin" "prepend"
+#   add the current directory to PATH
+addToPath \. "prepend" # escape the dot!
+#   add Android development tools to PATH
+androidHome="$HOME/android"
+addToPath "$androidHome/android-studio/bin" "append" # studio.sh - open the IDE!
+addToPath "$androidHome/sdk/platform-tools" "append" # adb, sqlite3, fastboot
+addToPath "$androidHome/sdk/emulator" "append" # emulator
+addToPath "$androidHome/sdk/tools" "append" # android, emulator, hierarchyview
+
+# Android
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1          # AStudio uses a libstdc++ incompatible with the Intel driver installed in the system. https://askubuntu.com/questions/867081/android-studio-buggy-after-upgrade-to-16-10

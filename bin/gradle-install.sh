@@ -10,12 +10,15 @@ reset=`tput sgr0`
 bold=`tput bold`
 
 function usage {
-  echo "${bold}Usage: `basename $0` [-h|--help] TARGET${reset}"
+  echo "${bold}Usage: `basename $0` [-d|--dry-run|-h|--help] TARGET${reset}"
   echo ""
   echo "  Compiles and deploys the TARGET project to the snapshots repository"
   echo "  specified in $configFile configuration file"
   echo ""
   echo " OPTIONS"
+  echo "    ${bold}-d|--dry-run${reset}"
+  echo "        Performs a trial execution without actually executing"
+  echo "        the commands"
   echo "    ${bold}-h|--help${reset}"
   echo "        Displays this usage page and exits"
   exit 1
@@ -23,13 +26,26 @@ function usage {
 
 function gradleInstall {
   if [[ -d .git || $(git rev-parse --git-dir > /dev/null 2>&1) ]]; then
-    if [[ -d "$1" ]]; then
-      chmod u+x ./gradlew
+    target=""
+    dryRun=false
+    if [[ "$1" == "--dry-run" || "$1" == "-d" ]]; then
+      target="$2"
+      dryRun=true
+    else
       target="$1"
+    fi
+    if [[ -d "$target" ]]; then
+      chmod u+x ./gradlew
       source $configFile
-      ./gradlew :"$target":uploadArchives \
-        -Pnexus_repository="$nexusRepository" \
-        -Pnexus_username="$nexusUsername" -Pnexus_password="$nexusPassword"
+      cmd="./gradlew :$target:uploadArchives -Pnexus_repository=$nexusRepository -Pnexus_username=$nexusUsername -Pnexus_password=$nexusPassword"
+      if $dryRun; then
+        echo "$cmd"
+      else
+        $cmd
+      fi
+      # ./gradlew ":"${target}":uploadArchives" \
+      #   -Pnexus_repository="$nexusRepository" \
+      #   -Pnexus_username="$nexusUsername" -Pnexus_password="$nexusPassword"
     else
       echo "ERROR: the specified TARGET does not exist or is not a directory"
       exit 1
