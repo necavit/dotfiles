@@ -25,6 +25,7 @@ addToPath "$androidHome/android-studio/bin" "append" # studio.sh - open the IDE!
 addToPath "$androidHome/sdk/platform-tools" "append" # adb, sqlite3, fastboot
 addToPath "$androidHome/sdk/emulator" "append" # emulator
 addToPath "$androidHome/sdk/tools" "append" # android, emulator, hierarchyview
+addToPath "$HOME/archiva/apache-archiva-2.2.3/bin"
 
 # Android
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1          # AStudio uses a libstdc++ incompatible with the Intel driver installed in the system. https://askubuntu.com/questions/867081/android-studio-buggy-after-upgrade-to-16-10
