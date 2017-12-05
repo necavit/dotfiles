@@ -11,6 +11,7 @@ def nmcli_toggle(args):
 	active = subprocess.check_output(['nmcli', 'connection', 'show', '--active'])
 	up_down = ('up', 'down')[conn_id in active]
 	subprocess.call(['nmcli', 'connection', up_down, 'id', conn_id])
+	subprocess.call(['auto-proxy-toggle'])
 
 
 if __name__ == '__main__':

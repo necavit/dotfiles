@@ -6,7 +6,7 @@ batch_file=""
 
 # Usage message + exit
 function usage {
-echo "Usage: `basename $0` BATCH_FILE [USERNAME]
+echo "Usage: `basename $0` BATCH_FILE
 
 YouTube downloader, based on the youtube-dl package. Downloads the videos
 from the URLs in the batch file and converts them to high quality mp3 files,
@@ -44,4 +44,3 @@ youtube-dl -i -x --audio-format mp3 --audio-quality 0 \
   --yes-playlist \
   -o "$download_dir/%(title)s.%(ext)s" \
   -a $batch_file \
-  --username $2

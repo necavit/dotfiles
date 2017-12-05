@@ -17,7 +17,17 @@ function usage {
   echo " OPTIONS"
   echo "    ${bold}-h|--help${reset}"
   echo "        Displays this usage page and exits"
+  echo "    ${bold}-l|--list${reset}"
+  echo "        Displays the current system proxy configuration"
   exit 1
+}
+
+function listProxyConfig() {
+  cmd="gsettings get org.gnome.system.proxy mode"
+  echo -n "$cmd            ->  " && $cmd
+  cmd="gsettings get org.gnome.system.proxy autoconfig-url"
+  echo -n "$cmd  ->  " && $cmd
+  exit 0
 }
 
 function toggleProxy {
@@ -33,6 +43,11 @@ function toggleProxy {
 # help: usage + exit
 if [[ "$1" = "--help" || "$1" = "-h" ]]; then
 	usage
+fi
+
+# Check list switch
+if [[ "$1" = "--list" || "$1" = "-l" ]]; then
+  listProxyConfig
 fi
 
 # Check that the proxy config file exists
