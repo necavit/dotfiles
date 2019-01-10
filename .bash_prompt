@@ -36,10 +36,10 @@ function colorizePS1() {
 	  hostStyle="${red}"
 	  promptChar="#"
 	else
-		userStyle="${hi_cyan}"
+		userStyle="${cyan}"
 	  bracketStyle="${hi_white}"
-	  dirStyle="${hi_blue}"
-	  hostStyle="${cyan}"
+	  dirStyle="${hi_cyan}"
+	  hostStyle="${green}"
 	  promptChar="\\$"
 	fi
 
