@@ -13,5 +13,10 @@
     "template_name": "david",
     "user_email": "davmarod@gmail.com",
     "user_name": "David Martínez Rodríguez"
+  },
+  {
+    "template_name": "wikiloc",
+    "user_email": "david@wikiloc.com",
+    "user_name": "David Martínez"
   }
 ]

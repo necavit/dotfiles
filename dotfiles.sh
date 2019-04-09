@@ -11,6 +11,24 @@ red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
+function installPip {
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	sudo python get-pip.py
+	rm get-pip.py
+}
+
+function installArgcomplete {
+	sudo pip install argcomplete
+}
+
+function enablePythonAutocomplete {
+	# NOTE: remember that Pip and 'argcomplete' must be installed as dependencies
+	echo "Enabling Python argcompletion..."
+	if [ ! -f /etc/bash_completion.d/python-argcomplete.sh ]; then
+		sudo activate-global-python-argcomplete --dest=/etc/bash_completion.d
+	fi
+}
+
 function copyFilesToHome {
 	echo "Syncing dotfiles to ~/ ..."
 	rsync --exclude ".git/" --exclude "dotfiles.sh" --exclude "bin/" \
@@ -45,6 +63,9 @@ function symlinkBinScripts {
 }
 
 function setupDotFiles {
+	installPip
+	installArgcomplete
+	enablePythonAutocomplete
 	copyFilesToHome          # syncronize the configuration dotfiles
 	symlinkBinScripts        # setup the scripts in the ~/bin directory
 

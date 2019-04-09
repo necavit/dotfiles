@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export CLICOLOR=1
+export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+
 # PATH customization:
 #   custom scripts (~/bin) and current directory
 export PATH=$PATH:~/bin:.
