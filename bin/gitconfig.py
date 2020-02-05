@@ -15,37 +15,37 @@ import subprocess
 def loadTemplates():
   filePath = os.path.join(os.path.expanduser('~'),'.gitconfig_templates')
   with open(filePath, 'rb') as templatesFile:
-		return json.load(templatesFile)
+    return json.load(templatesFile)
 
 def listTemplates():
   templates = loadTemplates()
   for template in templates:
-    print template['template_name'] + ':'
-    print '  user.name:  ' + template['user_name']
-    print '  user.email: ' + template['user_email'] + '\n'
+    print(template['template_name'] + ':')
+    print('  user.name:  ' + template['user_name'])
+    print('  user.email: ' + template['user_email'] + '\n')
   sys.exit()
 
 def configure(name, email):
   userNameCmd  = u'git config user.name "%s"' % name
   userEmailCmd = u'git config user.email "%s"' % email
-  print userNameCmd
+  print(userNameCmd)
   subprocess.call(userNameCmd, shell=True)
-  print userEmailCmd
+  print(userEmailCmd)
   subprocess.call(userEmailCmd, shell=True)
   sys.exit()
 
 def configWithCustom():
-  print 'Configuring repository with custom values.'
+  print('Configuring repository with custom values.')
   name =  raw_input('  user.name: ').decode(sys.stdin.encoding)
   email = raw_input('  user.email: ').decode(sys.stdin.encoding)
   configure(name, email)
 
 def configWithTemplate(templateName):
   if templateName == None:
-    print 'ERROR! You need to provide a template name!'
+    print('ERROR! You need to provide a template name!')
     sys.exit()
   else:
-    print 'Using template: ' + templateName
+    print('Using template: ' + templateName)
     template = [x for x in loadTemplates() if x['template_name'] == templateName][0]
     configure(template['user_name'],
               template['user_email'])
