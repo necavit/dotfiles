@@ -97,8 +97,8 @@ function generateCompletions {
 }
 
 function setupDotFiles {
-	checkDependencies        # apt-get and Python dependencies
-	enablePythonAutocomplete # argument autocompletion for Python scripts
+	#checkDependencies        # apt-get and Python dependencies
+	#enablePythonAutocomplete # argument autocompletion for Python scripts
 	copyFilesToHome          # syncronize the configuration dotfiles
 	symlinkBinScripts        # setup the scripts in the ~/bin directory
 	generateCompletions      # setup the completion file in the home directory

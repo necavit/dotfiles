@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export VISUAL="nano"
+export EDITOR="nano"
+
 # PATH customization:
 #   custom scripts (~/bin) and current directory
 export PATH=$PATH:~/bin:.
