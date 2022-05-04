@@ -11,3 +11,9 @@ alias ..="cd .."
 
 # Nautilus alias
 alias nau="nautilus . &"
+
+# git aliases
+alias dev="git checkout dev"
+alias pull="git pull"
+alias prune="git remote prune origin"
+alias push="git push && git push --tags"
