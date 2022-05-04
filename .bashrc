@@ -73,3 +73,7 @@ for file in ~/.{bash_aliases,bash_shortcut,bash_env,bash_functions,bash_prompt,b
 	[ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
+
+cd ~/workspace/wikilocandroid
+git branch
+git status
